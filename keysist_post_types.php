@@ -108,7 +108,7 @@ function keysist_post_types() {
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
     );
-    register_post_type('keysist_caracteris', $args );
+    register_post_type('keysist_caracter', $args );
 
     $labels = array(
         'name'                  => _x( 'Testimonios', 'Post Type General Name', 'keysist' ),
