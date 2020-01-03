@@ -1,13 +1,19 @@
 <?php
 /**
- * Plugin Name: Keysist Post Types
+ * Plugin Name: Gestor de Contenido para el thema de Keysist
  * Plugin URI: http://www.keysist.com/
- * Description: Plugin que gestiona los diferentes modulos del tema.
+ * Description: Plugin que gestiona los diferentes Contenidos del tema Keysist.
  * Version: 1.0
  * Author: Freddy Castillo
  * Author URI: http://www.keysist.com
  */
 if(!defined('ABSPATH')) died();
+
+add_action("admin_menu", "crear_menu");
+function crear_menu() {
+    add_menu_page('Contenido Keysist', 'Contenido Keysist', 'manage_options', 'menu_keyssist_pt', '');
+}
+
 function keysist_post_types() {
 
     $labels = array(
@@ -18,7 +24,7 @@ function keysist_post_types() {
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
         'parent_item_colon'     => __( 'Servicio Padre', 'keysist' ),
-        'all_items'             => __( 'Todas Las Servicios', 'keysist' ),
+        'all_items'             => __( 'Todas los Servicios', 'keysist' ),
         'add_new_item'          => __( 'Agregar Servicio', 'keysist' ),
         'add_new'               => __( 'Agregar Servicio', 'keysist' ),
         'new_item'              => __( 'Nueva Servicio', 'keysist' ),
@@ -47,7 +53,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => true,
+        'show_in_menu'          => 'menu_keyssist_pt',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-image-filter',
         'show_in_admin_bar'     => true,
@@ -68,7 +74,7 @@ function keysist_post_types() {
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
         'parent_item_colon'     => __( 'Caracteristica Padre', 'keysist' ),
-        'all_items'             => __( 'Todas Las Caracteristicas', 'keysist' ),
+        'all_items'             => __( 'Todas las Caracteristicas', 'keysist' ),
         'add_new_item'          => __( 'Agregar Caracteristica', 'keysist' ),
         'add_new'               => __( 'Agregar Caracteristica', 'keysist' ),
         'new_item'              => __( 'Nueva Caracteristica', 'keysist' ),
@@ -97,7 +103,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => true,
+        'show_in_menu'          => 'menu_keyssist_pt',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-admin-generic',
         'show_in_admin_bar'     => true,
@@ -147,7 +153,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => true,
+        'show_in_menu'          => 'menu_keyssist_pt',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-format-status',
         'show_in_admin_bar'     => true,
@@ -197,7 +203,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => true,
+        'show_in_menu'          => 'menu_keyssist_pt',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-welcome-learn-more',
         'show_in_admin_bar'     => true,
@@ -247,7 +253,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => true,
+        'show_in_menu'          => 'menu_keyssist_pt',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-store',
         'show_in_admin_bar'     => true,
