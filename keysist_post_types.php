@@ -11,7 +11,7 @@ if(!defined('ABSPATH')) died();
 
 add_action("admin_menu", "crear_menu");
 function crear_menu() {
-    add_menu_page('Contenido Keysist', 'Contenido Keysist', 'manage_options', 'menu_keyssist_pt', '');
+    add_menu_page('Contenido Keysist', 'Contenido Keysist', 'administrator', 'menu_keyssist_pt', '');
 }
 
 function keysist_post_types() {
@@ -24,7 +24,7 @@ function keysist_post_types() {
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
         'parent_item_colon'     => __( 'Servicio Padre', 'keysist' ),
-        'all_items'             => __( 'Todas los Servicios', 'keysist' ),
+        'all_items'             => __( 'Servicios', 'keysist' ),
         'add_new_item'          => __( 'Agregar Servicio', 'keysist' ),
         'add_new'               => __( 'Agregar Servicio', 'keysist' ),
         'new_item'              => __( 'Nueva Servicio', 'keysist' ),
@@ -74,7 +74,7 @@ function keysist_post_types() {
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
         'parent_item_colon'     => __( 'Caracteristica Padre', 'keysist' ),
-        'all_items'             => __( 'Todas las Caracteristicas', 'keysist' ),
+        'all_items'             => __( 'Caracteristicas', 'keysist' ),
         'add_new_item'          => __( 'Agregar Caracteristica', 'keysist' ),
         'add_new'               => __( 'Agregar Caracteristica', 'keysist' ),
         'new_item'              => __( 'Nueva Caracteristica', 'keysist' ),
@@ -124,7 +124,7 @@ function keysist_post_types() {
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
         'parent_item_colon'     => __( 'Testimonio Padre', 'keysist' ),
-        'all_items'             => __( 'Todas Las Testimonios', 'keysist' ),
+        'all_items'             => __( 'Testimonios', 'keysist' ),
         'add_new_item'          => __( 'Agregar Testimonio', 'keysist' ),
         'add_new'               => __( 'Agregar Testimonio', 'keysist' ),
         'new_item'              => __( 'Nueva Testimonio', 'keysist' ),
@@ -174,7 +174,7 @@ function keysist_post_types() {
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
         'parent_item_colon'     => __( 'Carrera Padre', 'keysist' ),
-        'all_items'             => __( 'Todas Las Carreras', 'keysist' ),
+        'all_items'             => __( 'Carreras', 'keysist' ),
         'add_new_item'          => __( 'Agregar Carrera', 'keysist' ),
         'add_new'               => __( 'Agregar Carrera', 'keysist' ),
         'new_item'              => __( 'Nueva Carrera', 'keysist' ),
@@ -224,7 +224,7 @@ function keysist_post_types() {
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
         'parent_item_colon'     => __( 'Producto Padre', 'keysist' ),
-        'all_items'             => __( 'Todas Las Productos', 'keysist' ),
+        'all_items'             => __( 'Productos', 'keysist' ),
         'add_new_item'          => __( 'Agregar Producto', 'keysist' ),
         'add_new'               => __( 'Agregar Producto', 'keysist' ),
         'new_item'              => __( 'Nueva Producto', 'keysist' ),
