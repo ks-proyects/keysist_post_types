@@ -11,9 +11,33 @@ if(!defined('ABSPATH')) died();
 
 add_action("admin_menu", "crear_menu");
 function crear_menu() {
-    add_menu_page('Contenido Keysist', 'Contenido Keysist', 'administrator', 'menu_keyssist_pt', '');
+    add_menu_page('Administración', 'Administración', 'administrator', 'menu_config', 'output_menu');
+    add_submenu_page('menu_config', 'Acerca de Nosotros', 'Acerca de Nosotros', 'manage_options', 'test_submenu_slug', 'output_submenu');
+    
 }
-
+function output_submenu() {
+    ?>
+    <h2>Theme Keysist</h2>
+    <p>Esto es un tema modificado, que permite la gestión del contenido desde un admistrador</p>
+    <h3>Secciones</h3>
+    <ul>
+        <li type="circle">Inicio  #home</li>
+        <li type="circle">Servicios #services</li>
+        <li type="circle">Acerca de Nosotros #aboutus</li>
+        <li type="circle">Objetivos #objetivs</li>
+        <li type="circle">Testimonios #testimonios</li>
+        <li type="circle">Blog #blogs</li>   
+        <li type="circle">Caracteristicas #caracteristic</li>    
+    </ul>
+    <?php
+  }
+function output_menu() {
+    ?>
+    <h1>Este es el menú</h1>
+    <p>Esta prueba nos permite aprender a crear menús en el admin de WordPress.</p>
+    <p>Esperamos que la disfrutes!</p>
+    <?php
+  }
 function keysist_post_types() {
 
     $labels = array(
@@ -53,7 +77,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_keyssist_pt',
+        'show_in_menu'          => 'menu_config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-image-filter',
         'show_in_admin_bar'     => true,
@@ -103,7 +127,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_keyssist_pt',
+        'show_in_menu'          => 'menu_config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-admin-generic',
         'show_in_admin_bar'     => true,
@@ -153,7 +177,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_keyssist_pt',
+        'show_in_menu'          => 'menu_config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-format-status',
         'show_in_admin_bar'     => true,
@@ -203,7 +227,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_keyssist_pt',
+        'show_in_menu'          => 'menu_config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-welcome-learn-more',
         'show_in_admin_bar'     => true,
@@ -253,7 +277,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_keyssist_pt',
+        'show_in_menu'          => 'menu_config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-store',
         'show_in_admin_bar'     => true,
