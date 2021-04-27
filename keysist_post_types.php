@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Gestor de Contenido para el thema de Keysist
+ * Plugin Name: Datos Dinámicos KeySist
  * Plugin URI: http://www.keysist.com/
  * Description: Plugin que gestiona los diferentes Contenidos del tema Keysist.
  * Version: 1.0
