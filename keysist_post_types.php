@@ -9,35 +9,16 @@
  */
 if(!defined('ABSPATH')) died();
 
-add_action("admin_menu", "crear_menu");
-function crear_menu() {
-    add_menu_page('Administración', 'Administración', 'administrator', 'menu_config', 'output_menu');
-    add_submenu_page('menu_config', 'Acerca de Nosotros', 'Acerca de Nosotros', 'manage_options', 'test_submenu_slug', 'output_submenu');
-    
+
+
+add_action("admin_menu", "crear_menu_config");
+function crear_menu_config() {
+    add_menu_page('Configuración', 'Configuración', 'editor', 'menu-config', '','dashicons-admin-multisite');
 }
-function output_submenu() {
-    ?>
-    <h2>Theme Keysist</h2>
-    <p>Esto es un tema modificado, que permite la gestión del contenido desde un admistrador</p>
-    <h3>Secciones</h3>
-    <ul>
-        <li type="circle">Inicio  #home</li>
-        <li type="circle">Servicios #services</li>
-        <li type="circle">Acerca de Nosotros #aboutus</li>
-        <li type="circle">Objetivos #objetivs</li>
-        <li type="circle">Testimonios #testimonios</li>
-        <li type="circle">Blog #blogs</li>   
-        <li type="circle">Caracteristicas #caracteristic</li>    
-    </ul>
-    <?php
-  }
-function output_menu() {
-    ?>
-    <h1>Este es el menú</h1>
-    <p>Esta prueba nos permite aprender a crear menús en el admin de WordPress.</p>
-    <p>Esperamos que la disfrutes!</p>
-    <?php
-  }
+add_action("admin_menu", "admin_menu_admin");
+function admin_menu_admin() {
+    add_menu_page('Administración ', 'Administración', 'editor', 'menu-gestion', '','dashicons-welcome-learn-more');
+}
 function keysist_post_types() {
 
     $labels = array(
@@ -77,7 +58,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_config',
+        'show_in_menu'          => 'menu-config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-image-filter',
         'show_in_admin_bar'     => true,
@@ -88,7 +69,7 @@ function keysist_post_types() {
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
     );
-    register_post_type('keysist_servicios', $args );
+    register_post_type('servicio', $args );
 
     $labels = array(
         'name'                  => _x( 'Caracteristicas', 'Post Type General Name', 'keysist' ),
@@ -127,7 +108,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_config',
+        'show_in_menu'          => 'menu-config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-admin-generic',
         'show_in_admin_bar'     => true,
@@ -138,7 +119,7 @@ function keysist_post_types() {
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
     );
-    register_post_type('keysist_caracter', $args );
+    register_post_type('caracteristica', $args );
 
     $labels = array(
         'name'                  => _x( 'Testimonios', 'Post Type General Name', 'keysist' ),
@@ -177,7 +158,7 @@ function keysist_post_types() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_config',
+        'show_in_menu'          => 'menu-config',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-format-status',
         'show_in_admin_bar'     => true,
@@ -188,46 +169,99 @@ function keysist_post_types() {
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
     );
-    register_post_type('keysist_testimonios', $args );
+    register_post_type('testimonio', $args );
+
 
     $labels = array(
-        'name'                  => _x( 'Carreras', 'Post Type General Name', 'keysist' ),
-        'singular_name'         => _x( 'Carrera', 'Post Type Singular Name', 'keysist' ),
-        'menu_name'             => __( 'Carreras', 'keysist' ),
-        'name_admin_bar'        => __( 'Carrera', 'keysist' ),
+        'name'                  => _x( 'PersonaS', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Persona', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'PersonaS', 'keysist' ),
+        'name_admin_bar'        => __( 'Persona', 'keysist' ),
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
-        'parent_item_colon'     => __( 'Carrera Padre', 'keysist' ),
-        'all_items'             => __( 'Carreras', 'keysist' ),
-        'add_new_item'          => __( 'Agregar Carrera', 'keysist' ),
-        'add_new'               => __( 'Agregar Carrera', 'keysist' ),
-        'new_item'              => __( 'Nueva Carrera', 'keysist' ),
-        'edit_item'             => __( 'Editar Carrera', 'keysist' ),
-        'update_item'           => __( 'Actualizar Carrera', 'keysist' ),
-        'view_item'             => __( 'Ver Carrera', 'keysist' ),
-        'view_items'            => __( 'Ver Carreras', 'keysist' ),
-        'search_items'          => __( 'Buscar Carrera', 'keysist' ),
+        'parent_item_colon'     => __( 'Persona Padre', 'keysist' ),
+        'all_items'             => __( 'PersonaS', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Persona', 'keysist' ),
+        'add_new'               => __( 'Agregar Persona', 'keysist' ),
+        'new_item'              => __( 'Nueva Persona', 'keysist' ),
+        'edit_item'             => __( 'Editar Persona', 'keysist' ),
+        'update_item'           => __( 'Actualizar Persona', 'keysist' ),
+        'view_item'             => __( 'Ver Persona', 'keysist' ),
+        'view_items'            => __( 'Ver PersonaS', 'keysist' ),
+        'search_items'          => __( 'Buscar Persona', 'keysist' ),
         'not_found'             => __( 'No Encontrado', 'keysist' ),
         'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
         'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
         'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
         'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
         'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
-        'insert_into_item'      => __( 'Insertar en Carrera', 'keysist' ),
-        'uploaded_to_this_item' => __( 'Agregado en Carrera', 'keysist' ),
-        'items_list'            => __( 'Lista de Carreras', 'keysist' ),
-        'items_list_navigation' => __( 'Navegación de Carreras', 'keysist' ),
-        'filter_items_list'     => __( 'Filtrar Carreras', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Persona', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Persona', 'keysist' ),
+        'items_list'            => __( 'Lista de PersonaS', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de PersonaS', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar PersonaS', 'keysist' ),
     );
     $args = array(
-        'label'                 => __( 'Carrera', 'keysist' ),
-        'description'           => __( 'Carreras para el Sitio Web', 'keysist' ),
+        'label'                 => __( 'Persona', 'keysist' ),
+        'description'           => __( 'PersonaS para el Sitio Web', 'keysist' ),
         'labels'                => $labels,
         'supports'              => array( 'title', 'editor', 'thumbnail' ),
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_config',
+        'show_in_menu'          => 'menu-config',
+        'menu_position'         => 6,
+        'menu_icon'             => 'dashicons-format-status',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type('personal', $args );
+
+    //Datos Administrables
+
+    $labels = array(
+        'name'                  => _x( 'Cursos', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Curso', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Cursos', 'keysist' ),
+        'name_admin_bar'        => __( 'Curso', 'keysist' ),
+        'archives'              => __( 'Archivo', 'keysist' ),
+        'attributes'            => __( 'Atributos', 'keysist' ),
+        'parent_item_colon'     => __( 'Curso Padre', 'keysist' ),
+        'all_items'             => __( 'Cursos', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Curso', 'keysist' ),
+        'add_new'               => __( 'Agregar Curso', 'keysist' ),
+        'new_item'              => __( 'Nueva Curso', 'keysist' ),
+        'edit_item'             => __( 'Editar Curso', 'keysist' ),
+        'update_item'           => __( 'Actualizar Curso', 'keysist' ),
+        'view_item'             => __( 'Ver Curso', 'keysist' ),
+        'view_items'            => __( 'Ver Cursos', 'keysist' ),
+        'search_items'          => __( 'Buscar Curso', 'keysist' ),
+        'not_found'             => __( 'No Encontrado', 'keysist' ),
+        'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
+        'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
+        'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
+        'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
+        'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Curso', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Curso', 'keysist' ),
+        'items_list'            => __( 'Lista de Cursos', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Cursos', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Cursos', 'keysist' ),
+    );
+    $args = array(
+        'label'                 => __( 'Curso', 'keysist' ),
+        'description'           => __( 'Cursos para el Sitio Web', 'keysist' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => 'menu-gestion',
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-welcome-learn-more',
         'show_in_admin_bar'     => true,
@@ -238,48 +272,48 @@ function keysist_post_types() {
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
     );
-    register_post_type('keysist_carreras', $args );
+    register_post_type('curso', $args );
 
     $labels = array(
-        'name'                  => _x( 'Productos', 'Post Type General Name', 'keysist' ),
-        'singular_name'         => _x( 'Producto', 'Post Type Singular Name', 'keysist' ),
-        'menu_name'             => __( 'Productos', 'keysist' ),
-        'name_admin_bar'        => __( 'Producto', 'keysist' ),
+        'name'                  => _x( 'Talleres', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Taller', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Talleres', 'keysist' ),
+        'name_admin_bar'        => __( 'Taller', 'keysist' ),
         'archives'              => __( 'Archivo', 'keysist' ),
         'attributes'            => __( 'Atributos', 'keysist' ),
-        'parent_item_colon'     => __( 'Producto Padre', 'keysist' ),
-        'all_items'             => __( 'Productos', 'keysist' ),
-        'add_new_item'          => __( 'Agregar Producto', 'keysist' ),
-        'add_new'               => __( 'Agregar Producto', 'keysist' ),
-        'new_item'              => __( 'Nueva Producto', 'keysist' ),
-        'edit_item'             => __( 'Editar Producto', 'keysist' ),
-        'update_item'           => __( 'Actualizar Producto', 'keysist' ),
-        'view_item'             => __( 'Ver Producto', 'keysist' ),
-        'view_items'            => __( 'Ver Productos', 'keysist' ),
-        'search_items'          => __( 'Buscar Producto', 'keysist' ),
+        'parent_item_colon'     => __( 'Taller Padre', 'keysist' ),
+        'all_items'             => __( 'Talleres', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Taller', 'keysist' ),
+        'add_new'               => __( 'Agregar Taller', 'keysist' ),
+        'new_item'              => __( 'Nueva Taller', 'keysist' ),
+        'edit_item'             => __( 'Editar Taller', 'keysist' ),
+        'update_item'           => __( 'Actualizar Taller', 'keysist' ),
+        'view_item'             => __( 'Ver Taller', 'keysist' ),
+        'view_items'            => __( 'Ver Talleres', 'keysist' ),
+        'search_items'          => __( 'Buscar Taller', 'keysist' ),
         'not_found'             => __( 'No Encontrado', 'keysist' ),
         'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
         'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
         'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
         'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
         'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
-        'insert_into_item'      => __( 'Insertar en Producto', 'keysist' ),
-        'uploaded_to_this_item' => __( 'Agregado en Producto', 'keysist' ),
-        'items_list'            => __( 'Lista de Productos', 'keysist' ),
-        'items_list_navigation' => __( 'Navegación de Productos', 'keysist' ),
-        'filter_items_list'     => __( 'Filtrar Productos', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Taller', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Taller', 'keysist' ),
+        'items_list'            => __( 'Lista de Talleres', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Talleres', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Talleres', 'keysist' ),
     );
     $args = array(
-        'label'                 => __( 'Producto', 'keysist' ),
-        'description'           => __( 'Productos para el Sitio Web', 'keysist' ),
+        'label'                 => __( 'Taller', 'keysist' ),
+        'description'           => __( 'Talleres para el Sitio Web', 'keysist' ),
         'labels'                => $labels,
         'supports'              => array( 'title', 'editor', 'thumbnail' ),
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => 'menu_config',
+        'show_in_menu'          => 'menu-gestion',
         'menu_position'         => 6,
-        'menu_icon'             => 'dashicons-store',
+        'menu_icon'             => 'dashicons-welcome-learn-more',
         'show_in_admin_bar'     => true,
         'show_in_nav_menus'     => true,
         'can_export'            => true,
@@ -288,8 +322,307 @@ function keysist_post_types() {
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
     );
-    register_post_type('keysist_productos', $args );
+    register_post_type('taller', $args );
 
+    $labels = array(
+        'name'                  => _x( 'Pregrados', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Pregrado', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Pregrados', 'keysist' ),
+        'name_admin_bar'        => __( 'Pregrado', 'keysist' ),
+        'archives'              => __( 'Archivo', 'keysist' ),
+        'attributes'            => __( 'Atributos', 'keysist' ),
+        'parent_item_colon'     => __( 'Pregrado Padre', 'keysist' ),
+        'all_items'             => __( 'Pregrados', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Pregrado', 'keysist' ),
+        'add_new'               => __( 'Agregar Pregrado', 'keysist' ),
+        'new_item'              => __( 'Nueva Pregrado', 'keysist' ),
+        'edit_item'             => __( 'Editar Pregrado', 'keysist' ),
+        'update_item'           => __( 'Actualizar Pregrado', 'keysist' ),
+        'view_item'             => __( 'Ver Pregrado', 'keysist' ),
+        'view_items'            => __( 'Ver Pregrados', 'keysist' ),
+        'search_items'          => __( 'Buscar Pregrado', 'keysist' ),
+        'not_found'             => __( 'No Encontrado', 'keysist' ),
+        'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
+        'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
+        'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
+        'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
+        'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Pregrado', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Pregrado', 'keysist' ),
+        'items_list'            => __( 'Lista de Pregrados', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Pregrados', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Pregrados', 'keysist' ),
+    );
+    $args = array(
+        'label'                 => __( 'Pregrado', 'keysist' ),
+        'description'           => __( 'Pregrados para el Sitio Web', 'keysist' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => 'menu-gestion',
+        'menu_position'         => 6,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type('pregrado', $args );
+
+    $labels = array(
+        'name'                  => _x( 'Post Grados', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Post Grado', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Post Grados', 'keysist' ),
+        'name_admin_bar'        => __( 'Post Grado', 'keysist' ),
+        'archives'              => __( 'Archivo', 'keysist' ),
+        'attributes'            => __( 'Atributos', 'keysist' ),
+        'parent_item_colon'     => __( 'Post Grado Padre', 'keysist' ),
+        'all_items'             => __( 'Post Grados', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Post Grado', 'keysist' ),
+        'add_new'               => __( 'Agregar Post Grado', 'keysist' ),
+        'new_item'              => __( 'Nueva Post Grado', 'keysist' ),
+        'edit_item'             => __( 'Editar Post Grado', 'keysist' ),
+        'update_item'           => __( 'Actualizar Post Grado', 'keysist' ),
+        'view_item'             => __( 'Ver Post Grado', 'keysist' ),
+        'view_items'            => __( 'Ver Post Grados', 'keysist' ),
+        'search_items'          => __( 'Buscar Post Grado', 'keysist' ),
+        'not_found'             => __( 'No Encontrado', 'keysist' ),
+        'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
+        'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
+        'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
+        'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
+        'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Post Grado', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Post Grado', 'keysist' ),
+        'items_list'            => __( 'Lista de Post Grados', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Post Grados', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Post Grados', 'keysist' ),
+    );
+    $args = array(
+        'label'                 => __( 'Post Grado', 'keysist' ),
+        'description'           => __( 'Post Grados para el Sitio Web', 'keysist' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => 'menu-gestion',
+        'menu_position'         => 6,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type('postgreado', $args );
+
+    $labels = array(
+        'name'                  => _x( 'Maestrías', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Maestría', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Maestrías', 'keysist' ),
+        'name_admin_bar'        => __( 'Maestría', 'keysist' ),
+        'archives'              => __( 'Archivo', 'keysist' ),
+        'attributes'            => __( 'Atributos', 'keysist' ),
+        'parent_item_colon'     => __( 'Maestría Padre', 'keysist' ),
+        'all_items'             => __( 'Maestrías', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Maestría', 'keysist' ),
+        'add_new'               => __( 'Agregar Maestría', 'keysist' ),
+        'new_item'              => __( 'Nueva Maestría', 'keysist' ),
+        'edit_item'             => __( 'Editar Maestría', 'keysist' ),
+        'update_item'           => __( 'Actualizar Maestría', 'keysist' ),
+        'view_item'             => __( 'Ver Maestría', 'keysist' ),
+        'view_items'            => __( 'Ver Maestrías', 'keysist' ),
+        'search_items'          => __( 'Buscar Maestría', 'keysist' ),
+        'not_found'             => __( 'No Encontrado', 'keysist' ),
+        'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
+        'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
+        'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
+        'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
+        'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Maestría', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Maestría', 'keysist' ),
+        'items_list'            => __( 'Lista de Maestrías', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Maestrías', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Maestrías', 'keysist' ),
+    );
+    $args = array(
+        'label'                 => __( 'Maestría', 'keysist' ),
+        'description'           => __( 'Maestrías para el Sitio Web', 'keysist' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => 'menu-gestion',
+        'menu_position'         => 6,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type('maestria', $args );
+
+    $labels = array(
+        'name'                  => _x( 'Doctorados', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Doctorado', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Doctorados', 'keysist' ),
+        'name_admin_bar'        => __( 'Doctorado', 'keysist' ),
+        'archives'              => __( 'Archivo', 'keysist' ),
+        'attributes'            => __( 'Atributos', 'keysist' ),
+        'parent_item_colon'     => __( 'Doctorado Padre', 'keysist' ),
+        'all_items'             => __( 'Doctorados', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Doctorado', 'keysist' ),
+        'add_new'               => __( 'Agregar Doctorado', 'keysist' ),
+        'new_item'              => __( 'Nueva Doctorado', 'keysist' ),
+        'edit_item'             => __( 'Editar Doctorado', 'keysist' ),
+        'update_item'           => __( 'Actualizar Doctorado', 'keysist' ),
+        'view_item'             => __( 'Ver Doctorado', 'keysist' ),
+        'view_items'            => __( 'Ver Doctorados', 'keysist' ),
+        'search_items'          => __( 'Buscar Doctorado', 'keysist' ),
+        'not_found'             => __( 'No Encontrado', 'keysist' ),
+        'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
+        'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
+        'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
+        'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
+        'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Doctorado', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Doctorado', 'keysist' ),
+        'items_list'            => __( 'Lista de Doctorados', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Doctorados', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Doctorados', 'keysist' ),
+    );
+    $args = array(
+        'label'                 => __( 'Doctorado', 'keysist' ),
+        'description'           => __( 'Doctorados para el Sitio Web', 'keysist' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => 'menu-gestion',
+        'menu_position'         => 6,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type('doctorado', $args );
+
+    $labels = array(
+        'name'                  => _x( 'Diplomados', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Diplomado', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Diplomados', 'keysist' ),
+        'name_admin_bar'        => __( 'Diplomado', 'keysist' ),
+        'archives'              => __( 'Archivo', 'keysist' ),
+        'attributes'            => __( 'Atributos', 'keysist' ),
+        'parent_item_colon'     => __( 'Diplomado Padre', 'keysist' ),
+        'all_items'             => __( 'Diplomados', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Diplomado', 'keysist' ),
+        'add_new'               => __( 'Agregar Diplomado', 'keysist' ),
+        'new_item'              => __( 'Nueva Diplomado', 'keysist' ),
+        'edit_item'             => __( 'Editar Diplomado', 'keysist' ),
+        'update_item'           => __( 'Actualizar Diplomado', 'keysist' ),
+        'view_item'             => __( 'Ver Diplomado', 'keysist' ),
+        'view_items'            => __( 'Ver Diplomados', 'keysist' ),
+        'search_items'          => __( 'Buscar Diplomado', 'keysist' ),
+        'not_found'             => __( 'No Encontrado', 'keysist' ),
+        'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
+        'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
+        'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
+        'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
+        'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Diplomado', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Diplomado', 'keysist' ),
+        'items_list'            => __( 'Lista de Diplomados', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Diplomados', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Diplomados', 'keysist' ),
+    );
+    $args = array(
+        'label'                 => __( 'Diplomado', 'keysist' ),
+        'description'           => __( 'Diplomados para el Sitio Web', 'keysist' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => 'menu-gestion',
+        'menu_position'         => 6,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type('diplomado', $args );
+
+    $labels = array(
+        'name'                  => _x( 'Convenios', 'Post Type General Name', 'keysist' ),
+        'singular_name'         => _x( 'Convenio', 'Post Type Singular Name', 'keysist' ),
+        'menu_name'             => __( 'Convenios', 'keysist' ),
+        'name_admin_bar'        => __( 'Convenio', 'keysist' ),
+        'archives'              => __( 'Archivo', 'keysist' ),
+        'attributes'            => __( 'Atributos', 'keysist' ),
+        'parent_item_colon'     => __( 'Convenio Padre', 'keysist' ),
+        'all_items'             => __( 'Convenios', 'keysist' ),
+        'add_new_item'          => __( 'Agregar Convenio', 'keysist' ),
+        'add_new'               => __( 'Agregar Convenio', 'keysist' ),
+        'new_item'              => __( 'Nueva Convenio', 'keysist' ),
+        'edit_item'             => __( 'Editar Convenio', 'keysist' ),
+        'update_item'           => __( 'Actualizar Convenio', 'keysist' ),
+        'view_item'             => __( 'Ver Convenio', 'keysist' ),
+        'view_items'            => __( 'Ver Convenios', 'keysist' ),
+        'search_items'          => __( 'Buscar Convenio', 'keysist' ),
+        'not_found'             => __( 'No Encontrado', 'keysist' ),
+        'not_found_in_trash'    => __( 'No Encontrado en Papelera', 'keysist' ),
+        'featured_image'        => __( 'Imagen Destacada', 'keysist' ),
+        'set_featured_image'    => __( 'Guardar Imagen destacada', 'keysist' ),
+        'remove_featured_image' => __( 'Eliminar Imagen destacada', 'keysist' ),
+        'use_featured_image'    => __( 'Utilizar como Imagen Destacada', 'keysist' ),
+        'insert_into_item'      => __( 'Insertar en Convenio', 'keysist' ),
+        'uploaded_to_this_item' => __( 'Agregado en Convenio', 'keysist' ),
+        'items_list'            => __( 'Lista de Convenios', 'keysist' ),
+        'items_list_navigation' => __( 'Navegación de Convenios', 'keysist' ),
+        'filter_items_list'     => __( 'Filtrar Convenios', 'keysist' ),
+    );
+    $args = array(
+        'label'                 => __( 'Convenio', 'keysist' ),
+        'description'           => __( 'Convenios para el Sitio Web', 'keysist' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => 'menu-gestion',
+        'menu_position'         => 6,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type('convenio', $args );
 }
 add_action('init', 'keysist_post_types', 0 );
 ?>
