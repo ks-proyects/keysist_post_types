@@ -13,11 +13,11 @@ if(!defined('ABSPATH')) died();
 
 add_action("admin_menu", "crear_menu_config");
 function crear_menu_config() {
-    add_menu_page('Configuración', 'Configuración', 'administrator', 'menu-config', '','dashicons-admin-multisite');
+    add_menu_page('Configuración', 'Configuración', 'editor', 'menu-config', '','dashicons-admin-multisite');
 }
 add_action("admin_menu", "admin_menu_admin");
 function admin_menu_admin() {
-    add_menu_page('Administración ', 'Administración', 'administrator', 'menu-gestion', '','dashicons-welcome-learn-more');
+    add_menu_page('Administración ', 'Administración', 'editor', 'menu-gestion', '','dashicons-welcome-learn-more');
 }
 function keysist_post_types() {
 
